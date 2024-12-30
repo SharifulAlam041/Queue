@@ -186,5 +186,33 @@ public class Main {
         //Thread safe version CopyOnWriteArrayList
         //***************//
 
+        //Using deque functionality
+        LinkedList<Integer> linkedList1 = new LinkedList<>();
+        linkedList1.addLast(200);
+        linkedList1.addLast(300);
+        linkedList1.addLast(400);
+        linkedList1.addLast(100);
+        System.out.println(linkedList1.getFirst());
+
+        //Using list functionality
+        LinkedList<Integer> linkedList2 = new LinkedList<>();
+        linkedList2.add(0,100);
+        linkedList2.add(1,300);
+        linkedList2.add(2,400);
+        linkedList2.add(1,200);
+        System.out.println(linkedList2.get(1) + " and " + linkedList2.get(2));
+        /* Complexity
+         * Insertion: O(1)-at start or end of the Linkedlist
+         * O(n)-inserting element at a specific index(O(n) for lookup,O(1) for inserting
+         * Deletion O(n)-deleting element at a specific index(O(n) for lookup,O(1) for deleting
+         * O(1)-at start or end of the Linkedlist
+         * Search O(n)
+         * */
+        //Thread safe version CopyOnWriteArrayList
+        //***************//
+
+        //Vector is same as arraylist but threadsafe, stack also threadsafe in java
+
+
     }
 }
