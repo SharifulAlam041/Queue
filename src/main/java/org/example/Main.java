@@ -213,6 +213,68 @@ public class Main {
 
         //Vector is same as arraylist but threadsafe, stack also threadsafe in java
 
+        //*****************************************************************************************************************************************************//
+        ///////////////////////////////////////////////
+        //size()-returns the number of key value mapping present
+        //isEmpty()-returns true if map contains no key value mapping
+        //containsKey(Object key)-if given key is present in the map returns true else false
+        //containsValue(Object value)-return true, if one or more key mapped to specified value
+        //get(Object key)-return the value to which key is mapped
+        //put(K key, V value)-if already same key present it overwrite, if not present then insert
+        //remove(Object key)-removes the key value mapping from map
+        //putAll(Map<K,V> m)-insert the mappings from specified map to this map
+        //clear()-remove all the mappings from the map
+        //Set<K> keySet()-returns the set view of the key contained in the map
+        //Collection<V> values()-returns the collection view of all values
+        //Set<Map.Entry<K,V>> entrySet()-returns the set view of the mappings present in the map
+        //putIfAbsent(K key, V value)-if key exists return the value associated with it, else create new mapping with this key and value
+        //getOrDefault(key,defaultValue)-if key not exists or value null, return default value
+        //Entry sub-interface
+        //          ->getKey()
+        //          ->getValue()
+        //          ->int hashCode()
+        //          ->boolean equals(Object o)
+        ///////////////////////////////////////////////
 
+        Map<Integer,String> integerStringMap = new HashMap<>();
+        integerStringMap.put(null,"Test");
+        integerStringMap.put(0,null);
+        integerStringMap.put(1,"A");
+        integerStringMap.put(2,"B");
+
+        integerStringMap.putIfAbsent(null,"test");
+        integerStringMap.putIfAbsent(0,"ZERO");
+        integerStringMap.putIfAbsent(3,"C");
+
+        for (Map.Entry<Integer,String> entryMap: integerStringMap.entrySet()) {
+            Integer key = entryMap.getKey();
+            String value = entryMap.getValue();
+            System.out.println("Key: "+ key +" Value: "+ value);
+        }
+        System.out.println("Check If Empty: " + integerStringMap.isEmpty());
+        System.out.println("Size: " + integerStringMap.size());
+        System.out.println("Contains(5): " + integerStringMap.containsKey(5));
+        System.out.println("get(1): " + integerStringMap.get(1));
+        System.out.println("getOrDefault(9): " + integerStringMap.getOrDefault(9,"Default Value"));
+        System.out.println("Remove(null): " + integerStringMap.remove(null));
+        for (Map.Entry<Integer,String> entryMap: integerStringMap.entrySet()) {
+            Integer key = entryMap.getKey();
+            String value = entryMap.getValue();
+            System.out.println("Key: "+ key +" Value: "+ value);
+        }
+        for(Integer key:integerStringMap.keySet()) {
+            System.out.println("Key: "+ key );
+        }
+        Collection<String> values = integerStringMap.values();
+        for(String value:values) {
+            System.out.println("Value: "+ value );
+        }
+
+        /* Complexity
+         * add:amortizedO(1)
+         * remove:amortizedOO(1)
+         * get:amortizedO(1)
+         * Thread safe version : ConcurrentHashMap and HashTable
+         * */
     }
 }
