@@ -271,10 +271,141 @@ public class Main {
         }
 
         /* Complexity
-         * add:amortizedO(1)
-         * remove:amortizedOO(1)
-         * get:amortizedO(1)
+         * add:amortized O(1)
+         * remove:amortized O(1)
+         * get:amortized
+         * O(1)
          * Thread safe version : ConcurrentHashMap and HashTable
          * */
+
+        //*****************************************************************************************************************************************************//
+        //Linked hash map maintains order(Insertion order and access order)
+        //Similar to hashmap but use double linkedlist
+        LinkedHashMap<Integer,String> linkedHashMap = new LinkedHashMap<>();
+        linkedHashMap.put(1,"A");
+        linkedHashMap.put(21,"B");
+        linkedHashMap.put(23,"C");
+        linkedHashMap.put(141,"D");
+        linkedHashMap.put(25,"E");
+        linkedHashMap.forEach((Integer key, String val)-> System.out.println(key + " : " + val));
+
+        LinkedHashMap<Integer,String> linkedHashMap2 = new LinkedHashMap<>(16,0.75F,true);
+        linkedHashMap2.put(1,"A");
+        linkedHashMap2.put(21,"B");
+        linkedHashMap2.put(23,"C");
+        linkedHashMap2.put(141,"D");
+        linkedHashMap2.put(25,"E");
+        linkedHashMap2.get(23);
+        linkedHashMap2.forEach((Integer key, String val)-> System.out.println(key + " : " + val));
+        //Complexity same as hashmap, no Thread safe version
+        //For converting thread safe version ->, Collections.synchronizedMap(new LinkedHashMap<>())
+
+        Map<Integer,String> treeMap = new TreeMap<>((Integer key1, Integer key2) -> key2-key1);
+        treeMap.put(21,"SJ");
+        treeMap.put(11,"TJ");
+        treeMap.put(13,"PJ");
+        treeMap.put(5,"KJ");
+        treeMap.forEach((Integer key, String val)-> System.out.println(key + " : " + val));
+        Map<Integer,String> treeMap2 = new TreeMap<>();
+        treeMap2.put(21,"SJ");
+        treeMap2.put(11,"TJ");
+        treeMap2.put(13,"PJ");
+        treeMap2.put(5,"KJ");
+        treeMap2.forEach((Integer key, String val)-> System.out.println(key + " : " + val));
+        //Write, Get, Delete complexity O(logn)
+        //TreeMap Implements SortedMap and NavigableMap,
+        //Methods in SortedMap
+        //SortedMap<K,V> headMap(K toKey)-returns elements from head to given key, excluding the given key
+        //SortedMap<K,V> tailMap(K fromKey)-returns elements from given key to tail, including the given key
+        //K firstKey()-returns first key
+        //K lastKey()-returns last key
+        SortedMap<Integer,String> sortedMap = new TreeMap<>();
+        sortedMap.put(21,"SJ");
+        sortedMap.put(11,"TJ");
+        sortedMap.put(13,"PJ");
+        sortedMap.put(5,"KJ");
+        System.out.println(sortedMap.headMap(13));
+        System.out.println(sortedMap.tailMap(13));
+        System.out.println(sortedMap.firstKey());
+        System.out.println(sortedMap.lastKey());
+
+        NavigableMap<Integer,String> map = new TreeMap<>();
+        //Map.Entry<K,V> lowerEntry(K key)-immediate lower entry of the given key
+        //K lowerKey(K key)-immediate lower key of the given key
+        //Map.Entry<K,V> floorEntry(K key)-return equal or immediate lower entry of the given key
+        //K floorKey(K key)-return equal or immediate lower key of the given key
+        //Map.Entry<K,V> ceilingEntry(K key)-return equal or immediate greater entry of the given key
+        //K ceilingKey(K key)-return equal or immediate greater key of the given key
+        //Map.Entry<K,V> higherEntry(K key)-immediate higher entry of the given key
+        //K higherKey(K key)-immediate higher key of the given key
+        //Map.Entry<K,V> firstEntry()-return the first Entry
+        //Map.Entry<K,V> lastEntry()-return the last Entry
+        //Map.Entry<K,V> pollFirstEntry()-remove and return the first Entry
+        //Map.Entry<K,V> pollLastEntry()-remove and return the last Entry
+        //NavigableMap<K,V> descendingMap()-return and reverse the element of the map
+        //NavigableSet<K> navigableKeySet()-if tree map is ascending it returns ascending else descending
+        //NavigableSet<K> descendingKeySet()-if tree map is ascending it returns descending else ascending
+        //NavigableMap<K,V> headMap(K toKey, boolean inclusive)-same as SortedMap
+        //NavigableMap<K,V> tailMap(K fromKey, boolean inclusive)-same as SortedMap
+
+        //*****************************************************************************************************************************************************//
+        //add(E element)-returns true, if element is not present in the set, then add it to set, otherwise false and do not add element to set
+        //addAll(Collection c)-performs Union of two set collections
+        //removeAll(Collection c)-performs difference of two set, delete the values given in the collection
+        //retainAll(Collection c)-performs intersection of two set collections,  return common elements from both sets
+        //
+        Set<Integer> set1 = new HashSet<>();
+        set1.add(12);
+        set1.add(11);
+        set1.add(33);
+        set1.add(4);
+
+        Set<Integer> set2 = new HashSet<>();
+        set2.add(11);
+        set2.add(9);
+        set2.add(88);
+        set2.add(10);
+        set2.add(5);
+        set2.add(12);
+        set1.addAll(set2);
+        System.out.println("After Union");
+        set1.forEach((Integer val)-> System.out.println("----------------"+val));
+
+        Set<Integer> set3 = new HashSet<>();
+        set3.add(12);
+        set3.add(11);
+        set3.add(33);
+        set3.add(4);
+
+        Set<Integer> set4 = new HashSet<>();
+        set4.add(11);
+        set4.add(9);
+        set4.add(88);
+        set4.add(10);
+        set4.add(5);
+        set4.add(12);
+        set3.retainAll(set4);
+        System.out.println("After Intersection");
+        set3.forEach((Integer val)-> System.out.println("----------------"+val));
+
+        Set<Integer> set5 = new HashSet<>();
+        set5.add(12);
+        set5.add(11);
+        set5.add(33);
+        set5.add(4);
+
+        Set<Integer> set6 = new HashSet<>();
+        set6.add(11);
+        set6.add(9);
+        set6.add(88);
+        set6.add(10);
+        set6.add(5);
+        set6.add(12);
+        set5.removeAll(set6);
+        System.out.println("After Removal");
+        set5.forEach((Integer val)-> System.out.println("----------------"+val));
+
+
+
     }
 }
